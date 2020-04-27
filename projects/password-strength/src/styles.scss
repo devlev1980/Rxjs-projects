@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+//@import "assets/styles/body";
+@import "assets/styles/colors";
+
+*{
+  box-sizing: border-box !important;
+  margin: 0;
+  padding: 0;
+  background: $primary-color;
+}
