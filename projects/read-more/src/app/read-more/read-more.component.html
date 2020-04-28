@@ -1,0 +1,17 @@
+<div class="container text-center mt-3 mb-5">
+  <button #buttonElement class="btn btn-outline-info">Load next items...</button>
+</div>
+
+<div *ngIf="clicks$ | async as photos">
+  <div class="row">
+    <div class="col-6  m-auto">
+      <div *ngFor="let photo of photos" class="card">
+        <div class="card-body d-flex align-items-center ">
+          <img src="{{photo.thumbnailUrl}}" alt="" class="card-img  h-auto mr-5">
+          <span>Title: {{photo.title}}</span></div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

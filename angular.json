@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "password-strength": {
@@ -12,7 +12,7 @@
       },
       "root": "projects/password-strength",
       "sourceRoot": "projects/password-strength/src",
-      "prefix": "app",
+      "prefix": "yl",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -30,7 +30,9 @@
             "styles": [
               "projects/password-strength/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+
+            ]
           },
           "configurations": {
             "production": {
@@ -119,6 +121,127 @@
           "configurations": {
             "production": {
               "devServerTarget": "password-strength:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "read-more": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/read-more",
+      "sourceRoot": "projects/read-more/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/read-more",
+            "index": "projects/read-more/src/index.html",
+            "main": "projects/read-more/src/main.ts",
+            "polyfills": "projects/read-more/src/polyfills.ts",
+            "tsConfig": "projects/read-more/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/read-more/src/favicon.ico",
+              "projects/read-more/src/assets"
+            ],
+            "styles": [
+              "projects/read-more/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/read-more/src/environments/environment.ts",
+                  "with": "projects/read-more/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "read-more:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "read-more:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "read-more:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/read-more/src/test.ts",
+            "polyfills": "projects/read-more/src/polyfills.ts",
+            "tsConfig": "projects/read-more/tsconfig.spec.json",
+            "karmaConfig": "projects/read-more/karma.conf.js",
+            "assets": [
+              "projects/read-more/src/favicon.ico",
+              "projects/read-more/src/assets"
+            ],
+            "styles": [
+              "projects/read-more/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/read-more/tsconfig.app.json",
+              "projects/read-more/tsconfig.spec.json",
+              "projects/read-more/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/read-more/e2e/protractor.conf.js",
+            "devServerTarget": "read-more:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "read-more:serve:production"
             }
           }
         }
