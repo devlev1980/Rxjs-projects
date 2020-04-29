@@ -1,0 +1,60 @@
+.counter{
+  //width: 30px;
+  //height: 30px;
+  //border: 1px solid #999999;
+  //display: flex;
+  //align-items: center;
+  //justify-content: center;
+  //border-radius: 50%;
+  //position: relative;
+
+  .counter__border{
+    position: relative;
+   span{
+     position: absolute;
+     top: 20px;
+     left: 20px;
+     transform: translate(-50%,-50%);
+     color: hsl(240, 100%, 98%);
+   }
+    //width: 100%;
+    //height: 100%;
+    //border-radius: 50%;
+    //display: flex;
+    //align-items: center;
+    //justify-content: center;
+    //border:1px solid blue;
+  }
+
+}
+.card{
+  flex:1 0 20%;
+
+}
+svg {
+  position: relative;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+  transform: rotateY(-180deg) rotateZ(-90deg);
+}
+svg circle.red{
+  stroke-dasharray: 113px;
+  stroke-dashoffset: 0px;
+  stroke-linecap: round;
+  stroke-width: 4px;
+  stroke: hsl(6, 71%, 44%);
+  fill: none;
+}
+
+svg circle.green {
+  stroke-dasharray: 113px;
+  stroke-dashoffset: 0px;
+  stroke-linecap: round;
+  stroke-width: 4px;
+  stroke: hsl(60, 93%, 94%);
+  fill: none;
+}
