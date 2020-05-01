@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {IStudent} from '../../models/student';
 import {SubjectService} from '../../services/subject.service';
@@ -18,7 +18,8 @@ export class MainComponent implements OnInit {
   asyncSubjectStudents = [];
   replaySubjectStudents = [];
 
-  constructor(private subjectService: SubjectService) { }
+  constructor(private subjectService: SubjectService) {
+  }
 
   ngOnInit(): void {
     this.subjectStudents$ = this.subjectService.subjectObservable$;
@@ -31,19 +32,30 @@ export class MainComponent implements OnInit {
       console.log(this.subjectStudents);
 
     });
+
+
     this.behaviorSubjectStudents$.subscribe(student => {
-      this.behaviorSubjectStudents.push(student);
-      console.log(this.behaviorSubjectStudents);
+      setTimeout(() => {
+        this.behaviorSubjectStudents.push(student);
+        console.log(this.behaviorSubjectStudents);
+      }, 6000);
+
     });
     this.asyncSubjectStudents$.subscribe(student => {
-      this.asyncSubjectStudents.push(student);
-      console.log(this.asyncSubjectStudents);
+      setTimeout(() => {
+        this.asyncSubjectStudents.push(student);
+        console.log(this.asyncSubjectStudents);
+      }, 9000);
     });
+
     this.replaySubjectStudents$.subscribe(student => {
-      this.replaySubjectStudents.push(student);
-      console.log(this.replaySubjectStudents);
+      setTimeout(() => {
+        this.replaySubjectStudents.push(student);
+        console.log(this.replaySubjectStudents);
+      }, 12000);
     });
   }
+
   onSendSubject() {
     this.subjectService.sendData();
   }

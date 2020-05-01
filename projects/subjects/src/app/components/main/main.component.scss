@@ -1,9 +1,15 @@
 ul.list-group{
-  padding: 0;
+
   li.list-group-item{
-    padding: 0;
+    border: 0;
     span{
-      border:0;
+      background: chocolate;
+      color: #ffffff;
     }
+
   }
+}
+p{
+  text-decoration: underline;
+  font-size: 22px;
 }

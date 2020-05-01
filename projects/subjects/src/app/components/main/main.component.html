@@ -5,10 +5,10 @@
 
 <div class="container d-flex justify-content-between">
   <yl-subject-comp>
-    <div class="mr-1">
-      <p>Subject</p>
-      <ul *ngFor="let s of subjectStudents" class="list-group ">
-        <li class="list-group-item mb-1">
+    <div class="mr-1 ">
+      <p class="text-center text-info">Subject</p>
+      <ul  class="list-group ">
+        <li class="list-group-item mb-1" *ngFor="let s of subjectStudents">
       <span class="list-group-item">
         <span class="mr-3">{{s.id}}</span>
         <span>{{s.name}}</span>
@@ -18,11 +18,11 @@
     </div>
   </yl-subject-comp>
 
-  <yl-behavior-subject-comp *ngIf="behaviorSubjectStudents.length>0">
+  <yl-behavior-subject-comp >
     <div class="mr-1" >
-      <p>Behavior subject</p>
-      <ul *ngFor="let s of behaviorSubjectStudents" class="list-group ">
-        <li class="list-group-item mb-1" >
+      <p class="text-center text-muted">Behavior subject</p>
+      <ul  class="list-group ">
+        <li class="list-group-item mb-1" *ngFor="let s of behaviorSubjectStudents">
       <span class="list-group-item">
         <span class="mr-3">{{s?.id}}</span>
         <span>{{s?.name}}</span>
@@ -33,10 +33,10 @@
   </yl-behavior-subject-comp>
 
   <yl-async-subject-comp>
-    <div class="mr-1">
-      <p>Async subject</p>
-      <ul *ngFor="let s of asyncSubjectStudents" class="list-group ">
-        <li class="list-group-item mb-1">
+    <div class="mr-1 text-center">
+      <p class="text-center text-danger">Async subject</p>
+      <ul class="list-group ">
+        <li class="list-group-item mb-1"  *ngFor="let s of asyncSubjectStudents">
       <span class="list-group-item">
         <span class="mr-3">{{s?.id}}</span>
         <span>{{s?.name}}</span>
@@ -48,9 +48,9 @@
 
   <yl-replay-subject-comp>
     <div>
-      <p>Replay subject</p>
-      <ul *ngFor="let s of replaySubjectStudents" class="list-group ">
-        <li class="list-group-item mb-1">
+      <p class="text-center text-success">Replay subject</p>
+      <ul class="list-group">
+        <li class="list-group-item mb-1" *ngFor="let s of replaySubjectStudents" >
       <span class="list-group-item">
         <span class="mr-3">{{s?.id}}</span>
         <span>{{s?.name}}</span>
