@@ -8,8 +8,10 @@
     <div class="mr-1 ">
       <p class="text-center text-info">Subject</p>
       <ul  class="list-group ">
-        <li class="list-group-item mb-1" *ngFor="let s of subjectStudents">
-      <span class="list-group-item">
+
+
+        <li class="list-group-item mb-1"  *ngFor="let s of subjectStudents" >
+      <span class="list-group-item" [ngStyle]="{background: '#17a2b8'}">
         <span class="mr-3">{{s.id}}</span>
         <span>{{s.name}}</span>
       </span>
@@ -23,7 +25,7 @@
       <p class="text-center text-muted">Behavior subject</p>
       <ul  class="list-group ">
         <li class="list-group-item mb-1" *ngFor="let s of behaviorSubjectStudents">
-      <span class="list-group-item">
+      <span class="list-group-item" [ngStyle]="{background: '#6c757d'}">
         <span class="mr-3">{{s?.id}}</span>
         <span>{{s?.name}}</span>
       </span>
@@ -37,7 +39,7 @@
       <p class="text-center text-danger">Async subject</p>
       <ul class="list-group ">
         <li class="list-group-item mb-1"  *ngFor="let s of asyncSubjectStudents">
-      <span class="list-group-item">
+      <span class="list-group-item" [ngStyle]="{background:'#dc3545'}">
         <span class="mr-3">{{s?.id}}</span>
         <span>{{s?.name}}</span>
       </span>
@@ -51,7 +53,7 @@
       <p class="text-center text-success">Replay subject</p>
       <ul class="list-group">
         <li class="list-group-item mb-1" *ngFor="let s of replaySubjectStudents" >
-      <span class="list-group-item">
+      <span class="list-group-item" [ngStyle]="{background:'#28a745'}">
         <span class="mr-3">{{s?.id}}</span>
         <span>{{s?.name}}</span>
       </span>
