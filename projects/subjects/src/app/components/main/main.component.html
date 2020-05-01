@@ -1,0 +1,65 @@
+<div class="container d-flex w-100 justify-content-center mt-3 mb-3">
+  <button class="btn btn-info" (click)="onSendSubject()">Send subjects</button>
+</div>
+<hr>
+
+<div class="container d-flex justify-content-between">
+  <yl-subject-comp>
+    <div class="mr-1">
+      <p>Subject</p>
+      <ul *ngFor="let s of subjectStudents" class="list-group ">
+        <li class="list-group-item mb-1">
+      <span class="list-group-item">
+        <span class="mr-3">{{s.id}}</span>
+        <span>{{s.name}}</span>
+      </span>
+        </li>
+      </ul>
+    </div>
+  </yl-subject-comp>
+
+  <yl-behavior-subject-comp *ngIf="behaviorSubjectStudents.length>0">
+    <div class="mr-1" >
+      <p>Behavior subject</p>
+      <ul *ngFor="let s of behaviorSubjectStudents" class="list-group ">
+        <li class="list-group-item mb-1" >
+      <span class="list-group-item">
+        <span class="mr-3">{{s?.id}}</span>
+        <span>{{s?.name}}</span>
+      </span>
+        </li>
+      </ul>
+    </div>
+  </yl-behavior-subject-comp>
+
+  <yl-async-subject-comp>
+    <div class="mr-1">
+      <p>Async subject</p>
+      <ul *ngFor="let s of asyncSubjectStudents" class="list-group ">
+        <li class="list-group-item mb-1">
+      <span class="list-group-item">
+        <span class="mr-3">{{s?.id}}</span>
+        <span>{{s?.name}}</span>
+      </span>
+        </li>
+      </ul>
+    </div>
+  </yl-async-subject-comp>
+
+  <yl-replay-subject-comp>
+    <div>
+      <p>Replay subject</p>
+      <ul *ngFor="let s of replaySubjectStudents" class="list-group ">
+        <li class="list-group-item mb-1">
+      <span class="list-group-item">
+        <span class="mr-3">{{s?.id}}</span>
+        <span>{{s?.name}}</span>
+      </span>
+        </li>
+      </ul>
+    </div>
+  </yl-replay-subject-comp>
+</div>
+
+
+
