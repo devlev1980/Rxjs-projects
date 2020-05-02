@@ -1,0 +1,51 @@
+.paper__wrapper{
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-around;
+
+
+.paper__holder {
+  background: radial-gradient(circle, rgba(1,17,6,1) 57%, rgba(255,255,255,1) 100%);
+
+  display: block;
+  height: 15px;
+  position: relative;
+  z-index: 100;
+  border-radius: 20px;
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 1),
+               inset 4px 4px 15px 0px #000000
+
+}
+  .paper__roll.list-group{
+    padding: 0;
+    position: absolute;
+    top: auto;
+    width: 568px;
+    min-height: 100px;
+    border-top: 0;
+    transition:1s min-height linear;
+    border-radius: 5px;
+      background-image: url("../../assets/img/paper texture_seamless_white tissue.jpg");
+      background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+
+    li{
+      max-height: 140px;
+      background: url("../../assets/img/paper texture_seamless_white tissue.jpg");
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      border-bottom: 3px dashed white;
+      padding: 2.35rem 1.25rem;
+      transition:1s padding linear;
+      font-size: 18px;
+    }
+
+  }
+
+}
+
+

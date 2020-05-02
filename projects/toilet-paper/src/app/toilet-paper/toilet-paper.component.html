@@ -1,0 +1,21 @@
+<div class="paper__wrapper mt-5" >
+  <div >
+    <button class="btn btn-info" #buttonRollDown>Scroll paper down</button>
+  </div>
+
+
+  <div class="container" style="max-width: 600px;width: 100%">
+      <div class="paper__holder">
+
+      </div>
+    <ul class="paper__roll list-group"   #paperRoll [style.minHeight]="paperRollHeight+ 'px'">
+      <li class="list-group-item  border-top-0"   *ngFor="let quote of data;let i=index" >
+        <span>{{quote}}</span>
+      </li>
+
+    </ul>
+  </div>
+  <div style="justify-self: flex-end">
+    <button class="btn btn-info" #buttonRollUp>Scroll paper up</button>
+  </div>
+</div>
