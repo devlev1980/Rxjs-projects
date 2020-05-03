@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import {IResult, PaperService} from '../services/paper.service';
 import {fromEvent, Observable} from 'rxjs';
-import {switchMap} from 'rxjs/operators';
+import {filter, switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'yl-toilet-paper',
@@ -26,7 +26,7 @@ export class ToiletPaperComponent implements OnInit, AfterViewInit {
   clicksRollDown$: Observable<Event>;
   clicksRollUp$: Observable<Event>;
   data$: Observable<IResult>;
-  data: string[] = [];
+  data: IResult[] = [];
   transition: string = '200ms min-height ease-in-out';
 
   constructor(private paperService: PaperService,
@@ -49,18 +49,17 @@ export class ToiletPaperComponent implements OnInit, AfterViewInit {
       })
     ).subscribe((data) => {
       console.log(data);
-      this.data.push(data.content);
-      this.paperRollHeight += 100;
-      // this.renderer.setStyle(this.paperRoll.nativeElement, 'min-height', `${this.paperRollHeight + 50}px`);
+
+      this.data.push(data);
+      this.paperRollHeight += 70;
       this.cdr.detectChanges();
+
     });
 
     this.clicksRollUp$ = fromEvent(this.buttonRollUp.nativeElement, 'click');
-    this.clicksRollUp$
-
-      .subscribe(data => {
+    this.clicksRollUp$.subscribe(data => {
         if (this.paperRollHeight > 100) {
-          this.paperRollHeight -= 100;
+          this.paperRollHeight -= 70;
           this.data.splice(this.data.length - 1, 1);
         } else {
           return;

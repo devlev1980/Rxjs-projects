@@ -1,6 +1,8 @@
 <div class="paper__wrapper mt-5" >
-  <div >
-    <button class="btn btn-info" #buttonRollDown>Scroll paper down</button>
+  <div class="left__side">
+    <button class="btn btn-info" #buttonRollDown>
+      <img class="img__down" src="assets/img/arrow_down-512.png" alt="">
+    </button>
   </div>
 
 
@@ -10,12 +12,15 @@
       </div>
     <ul class="paper__roll list-group"   #paperRoll [style.minHeight]="paperRollHeight+ 'px'">
       <li class="list-group-item  border-top-0"   *ngFor="let quote of data;let i=index" >
-        <span>{{quote}}</span>
+        <span>"{{quote.content}}..."</span>
+        <p class="text-muted">--------{{quote.author}}---------</p>
       </li>
 
     </ul>
   </div>
-  <div style="justify-self: flex-end">
-    <button class="btn btn-info" #buttonRollUp>Scroll paper up</button>
+  <div class="right__side">
+    <button class="btn btn-info custom" #buttonRollUp>
+      <img class="img__up" src="assets/img/arrow_up-512.png" alt="">
+    </button>
   </div>
 </div>
