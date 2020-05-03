@@ -15,6 +15,9 @@
       height: auto;
 
     }
+    img.img__up{
+      transform:rotate(-180deg);
+    }
   }
 
 
@@ -24,7 +27,7 @@
 
 .paper__wrapper{
   width: 100%;
-  min-height: 100vh;
+  min-height: 16vh;
   display: flex;
   justify-content: space-around;
 
@@ -85,6 +88,19 @@
 
   }
 
-}
 
+}
+.niagara{
+
+  div{
+    width: 400px;
+    height: auto;
+
+    img{
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+}
 

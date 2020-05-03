@@ -19,7 +19,7 @@ export class PaperService {
     ).subscribe(data => {
       this.quote = data;
       console.log('---', data);
-      this.quote.results = this.quote.results.filter((quote) => quote.content.length < 70);
+      this.quote.results = this.quote.results.filter((quote) => quote.content.length < 78);
       console.log(this.quote.results);
 
 
