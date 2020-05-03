@@ -40,6 +40,7 @@
   position: relative;
   z-index: 100;
   border-radius: 20px;
+  top:13px;
   box-shadow: 2px 2px 15px rgba(0, 0, 0, 1),
                inset 4px 4px 15px 0px #000000
 
@@ -49,7 +50,7 @@
     position: absolute;
     top: auto;
     width: 568px;
-    min-height: 100px;
+    min-height: 200px;
     border-top: 0;
     transition:1s min-height linear;
     border-radius: 5px;
@@ -70,7 +71,7 @@
       background-position: center center;
       background-size: cover;
       border-bottom: 3px dashed white;
-      padding: 0.75rem 1.25rem 0.20rem;
+      padding: 0.75rem 1.25rem 1.3rem;
       transition:1s padding linear;
       //font-size: 18px;
         //text-align: center;
