@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import {IResult, PaperService} from '../services/paper.service';
 import {fromEvent, Observable} from 'rxjs';
-import {filter, switchMap} from 'rxjs/operators';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'yl-toilet-paper',
@@ -27,7 +27,6 @@ export class ToiletPaperComponent implements OnInit, AfterViewInit {
   clicksRollUp$: Observable<Event>;
   data$: Observable<IResult>;
   data: IResult[] = [];
-  transition: string = '200ms min-height ease-in-out';
 
   constructor(private paperService: PaperService,
               private renderer: Renderer2,
@@ -74,18 +73,6 @@ export class ToiletPaperComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
   }
 
-  onScroll(event: Event) {
-    console.log(event);
-
-    if (this.paperRollHeight >= 100) {
-
-      console.log('aaa');
-    }
-  }
-
-  setHeight() {
-
-  }
 
 
 }
