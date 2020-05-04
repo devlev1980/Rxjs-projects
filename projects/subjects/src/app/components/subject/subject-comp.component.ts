@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'yl-subject-comp',
@@ -9,10 +9,8 @@ import {Component, OnInit} from '@angular/core';
 // tslint:disable-next-line:component-class-suffix
 export class SubjectComp implements OnInit {
 
-
   constructor() {
   }
-
   ngOnInit(): void {
 
 
