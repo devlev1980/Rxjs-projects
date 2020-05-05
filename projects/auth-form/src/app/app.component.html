@@ -1,2 +1,7 @@
-<yl-generic-form ></yl-generic-form>
+<form name="loginForm" [formGroup]="loginForm" novalidate>
+  <div *ngFor="let config of loginFormData">
+    <yl-generic-form [genericFormGroup]="loginForm" [genericFormConfig]="config"></yl-generic-form>
+  </div>
+</form>
+
 <router-outlet></router-outlet>
