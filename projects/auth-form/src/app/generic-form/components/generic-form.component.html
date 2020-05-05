@@ -30,8 +30,8 @@
   Select Element
   <div *ngIf="genericFormConfig.element === 'select'">
     <mat-form-field>
-      <mat-label>{{genericFormConfig.label}}</mat-label>
-      <mat-select [formControlName]="genericFormConfig.formControlName">
+      <mat-label>{{genericFormConfig?.label}}</mat-label>
+      <mat-select [formControlName]="genericFormConfig?.formControlName">
         <mat-option *ngFor="let option of genericFormConfig?.options" [value]="option">
           {{option}}
         </mat-option>

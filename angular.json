@@ -730,6 +730,127 @@
           }
         }
       }
+    },
+    "modal-rxjs": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/modal-rxjs",
+      "sourceRoot": "projects/modal-rxjs/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/modal-rxjs",
+            "index": "projects/modal-rxjs/src/index.html",
+            "main": "projects/modal-rxjs/src/main.ts",
+            "polyfills": "projects/modal-rxjs/src/polyfills.ts",
+            "tsConfig": "projects/modal-rxjs/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/modal-rxjs/src/favicon.ico",
+              "projects/modal-rxjs/src/assets"
+            ],
+            "styles": [
+              "projects/modal-rxjs/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/modal-rxjs/src/environments/environment.ts",
+                  "with": "projects/modal-rxjs/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "modal-rxjs:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "modal-rxjs:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "modal-rxjs:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/modal-rxjs/src/test.ts",
+            "polyfills": "projects/modal-rxjs/src/polyfills.ts",
+            "tsConfig": "projects/modal-rxjs/tsconfig.spec.json",
+            "karmaConfig": "projects/modal-rxjs/karma.conf.js",
+            "assets": [
+              "projects/modal-rxjs/src/favicon.ico",
+              "projects/modal-rxjs/src/assets"
+            ],
+            "styles": [
+              "projects/modal-rxjs/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/modal-rxjs/tsconfig.app.json",
+              "projects/modal-rxjs/tsconfig.spec.json",
+              "projects/modal-rxjs/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/modal-rxjs/e2e/protractor.conf.js",
+            "devServerTarget": "modal-rxjs:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "modal-rxjs:serve:production"
+            }
+          }
+        }
+      }
     }
   },
   "defaultProject": "password-strength"
