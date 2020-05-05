@@ -1,0 +1,50 @@
+<form [formGroup]="genericFormGroup">
+  <div *ngIf="genericFormConfig?.element === 'input'">
+    <mat-form-field  [class]="genericFormConfig?.matFormFieldCss" #matFormField>
+      <mat-label *ngIf="genericFormConfig?.label">{{genericFormConfig.label}}</mat-label>
+
+        <input matInput
+                [formControlName]="genericFormConfig?.formControlName"
+                [placeholder]="genericFormConfig?.placeholder"
+                [errorStateMatcher]="matcher"
+                [class]="genericFormConfig?.cssClass"
+                [type]="genericFormConfig?.type"
+                #valueField>
+
+
+
+      <mat-icon *ngIf="genericFormConfig?.icon" matSuffix class="secondary-text">{{genericFormConfig?.icon}}</mat-icon>
+      <mat-error *ngIf="genericFormGroup?.controls[genericFormConfig?.formControlName].hasError('required')">
+        {{genericFormConfig?.errorMessage}}
+      </mat-error>
+      <mat-error
+        *ngIf="genericFormGroup?.controls[genericFormConfig?.formControlName].hasError('email') &&
+            !genericFormGroup?.controls[genericFormConfig?.formControlName].hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="genericFormGroup?.errors?.passwordMatch">
+        Password and Confirm password don't match
+      </mat-error>
+    </mat-form-field>
+  </div>
+  Select Element
+  <div *ngIf="genericFormConfig.element === 'select'">
+    <mat-form-field>
+      <mat-label>{{genericFormConfig.label}}</mat-label>
+      <mat-select [formControlName]="genericFormConfig.formControlName">
+        <mat-option *ngFor="let option of genericFormConfig?.options" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="genericFormGroup?.controls[genericFormConfig?.formControlName].hasError('required')">
+        {{genericFormConfig?.errorMessage}}
+      </mat-error>
+    </mat-form-field>
+  </div>
+<!--  ------------------------------------------------------------------------------>
+  <div *ngIf="genericFormConfig?.element === 'checkbox'">
+    <mat-label>{{genericFormConfig?.label}}</mat-label>
+    <mat-checkbox [formControlName]="genericFormConfig?.formControlName"></mat-checkbox>
+  </div>
+
+</form>

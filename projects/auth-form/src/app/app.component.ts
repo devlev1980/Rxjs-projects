@@ -10,9 +10,9 @@ import {FormService} from './generic-form/services/form.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements AfterContentInit {
+export class AppComponent implements OnInit {
 
-  loginFormData: Array<IInputElement>;
+  loginFormData: Array<ISelectElement | IInputElement>;
   loginForm: FormGroup;
 
   constructor(private formService: FormService) {
@@ -20,10 +20,6 @@ export class AppComponent implements AfterContentInit {
   }
 
   ngOnInit(): void {
-
-  }
-
-  ngAfterContentInit(): void {
     this.loginFormData = [
       {
         element: 'input',
@@ -48,11 +44,32 @@ export class AppComponent implements AfterContentInit {
         disabled: false,
         icon: '',
         value: ''
+      },
+      {
+        element: 'select',
+        type: 'select',
+        formControlName: 'select',
+        validators: [],
+        options: ['HTML', 'CSS', 'JS'],
+        errorMessage: '',
+        value: '',
+        disabled: false,
+        matFormFieldCss: '',
+        event: '',
+        label: '',
+        cssClass: '',
+        placeholder: '',
+        hideRequired: true,
+        icon: ''
       }
     ];
     this.loginForm = this.formService.createFormGroup(this.loginFormData);
   }
 
+
+  onSubmit(loginForm: FormGroup) {
+    console.log(loginForm.value);
+  }
 }
 
 
