@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <form [formGroup]="iCloudForm">
+      <div class="col-4">
+
+        <div class="img">
+          <img src="assets/img/download.png" alt="">
+        </div>
+        <div class="form_title"><h1>Sign in to iCloud</h1></div>
+        <div class="input__apple_id" >
+          <input type="text" (focus)="onFocusAppleId($event.target.value)" #inputAppleIdRef formControlName="username" (input)="onInputUsername($event.target.value)" placeholder="Apple ID" >
+
+
+          <button *ngIf="showButton" [disabled]="!iCloudForm.get('username').value" (click)="onSubmitAppleId()" [class.loading]="showLoader">
+            <i *ngIf="!showLoader && showButton" class="fa fa-arrow-circle-right fa-2x"></i>
+            <img *ngIf="showLoader" src="assets/img/upload-file-feature-contact-form.gif" alt="">
+          </button>
+        </div>
+
+<!--        <span class="text-danger" *ngIf="iCloudForm.get('username').hasError('required') && iCloudForm.touched">-->
+<!--          This field is required-->
+<!--        </span>-->
+
+      </div>
+
+      <div class="col-4 password" >
+        <ng-container  #container ></ng-container>
+        <div class="tooltip-custom" *ngIf="showTooltip">
+          <span>Your Apple ID or password was incorrect</span>
+        </div>
+      </div>
+
+
+
+      <div class="form-group">
+        <input type="checkbox" id="html">
+        <label for="html">Keep me signed in</label>
+      </div>
+      <div class="splitter"></div>
+
+      <div class="form-group-link">
+        <a href="#">Forgotten your Apple ID or password?</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!--<p>Value:{{iCloudForm.value | json}}</p>-->
+<!--<p>Touched:{{iCloudForm.touched}}</p>-->
+<!--<p>Dirty:{{iCloudForm.dirty}}</p>-->
+<!--<p>Error:{{iCloudForm.errors}}</p>-->

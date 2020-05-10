@@ -1,0 +1,25 @@
+header{
+  .header_wrapper{
+    background: #323232;
+    height: 50px;
+    padding: 0 15px;
+    width: 100%;
+
+    ul{
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      li>a.help{
+        color:#ffffff;
+        //width: 30px;
+        //height: auto;
+        border:3px solid #ffffff;
+        padding: 3px 8px;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
