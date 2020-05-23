@@ -14,8 +14,10 @@ import {AppleIdComponent} from '../apple-id/apple-id.component';
 import {ControlContainer, ControlValueAccessor, FormControl, FormGroupDirective, NG_VALUE_ACCESSOR, Validators} from '@angular/forms';
 import {FormService, IUser} from '../services/form.service';
 import {FirebaseService} from '../services/firebase.service';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
 import {Observable} from 'rxjs';
+import {AngularFireAuth} from 'angularfire2/auth';
+import {map, reduce} from 'rxjs/operators';
 
 @Component({
   selector: 'app-apple-password',
@@ -35,34 +37,29 @@ import {Observable} from 'rxjs';
 export class ApplePasswordComponent implements OnInit, AfterViewInit {
   showLoader: boolean = false;
   @ViewChild('inputApplePasswordRef') inputApplePasswordRef: ElementRef;
-  value: string = ''; // this is the updated value that the class accesses
   disabled: boolean;
-  onChange: (value: any) => {};
-  onTouched: () => {};
   passwordControl: FormControl;
-  user: IUser;
+  user: firebase.User;
   showIcon: boolean = true;
   showTooltip: boolean = false;
-  authenticated: boolean;
-  isLoggedIn$: Observable<boolean>;
 
   constructor(private renderer: Renderer2,
               public formGroupDirective: FormGroupDirective,
               private formService: FormService,
               private firebaseService: FirebaseService,
+              private firebaseAuth: AngularFireAuth,
               private cdr: ChangeDetectorRef) {
-    this.isLoggedIn$ = this.firebaseService.isLoggedIn();
+
 
   }
 
   ngOnInit(): void {
-
     this.passwordControl = new FormControl();
+
   }
 
 
   updateValue(insideValue: string) {
-
     this.passwordControl.patchValue(insideValue);
   }
 
@@ -71,45 +68,41 @@ export class ApplePasswordComponent implements OnInit, AfterViewInit {
   }
 
   onSubmitApplePassword() {
-    this.showIcon = false;
 
-    this.showLoader = true;
     const username = this.formGroupDirective.form.get('username').value;
     const password = this.passwordControl.value;
+    // this.showIcon = false;
+    // this.showLoader = true;
+    this.firebaseService.login(username, password).subscribe(
+      success => {
+        if (success) {
+          this.showLoader = false;
+          alert('Good');
+        } else {
+          this.showTooltip = true;
+        }
 
-    // this.formGroupDirective.form.addControl('password', new FormControl(this.passwordControl.value, Validators.required));
-    // this.formService.setPassword(this.formGroupDirective.form.value);
-    this.firebaseService.login(username, password);
-    this.isLoggedIn$.subscribe(res => {
-      if (res) {
-        console.log('is logged in');
-      } else {
-        console.log('is not logged in');
-      }
-    });
-    // if (this.firebaseService.isAuthorized) {
-    //   alert('is authorized');
-    // }else{
-    //   this.showLoader = true;
-    //   this.showTooltip = true;
-    //   this.cdr.detectChanges();
-    // }
+      },
+    );
 
 
-    // setTimeout(() => {
-    //   this.showLoader = false;
-    //   this.showIcon = true;
+    // let name, email, photoUrl, uid, emailVerified;
     //
-    // }, 1000);
-
-
-    // console.log(this.formGroupDirective);
-
+    // if (user != null) {
+    //   name = user.displayName;
+    //   email = user.email;
+    //   photoUrl = user.photoURL;
+    //   emailVerified = user.emailVerified;
+    //   uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
+    //                    // this value to authenticate with your backend server, if
+    //                    // you have one. Use User.getToken() instead.
+    //
+    //   console.log(name, email, uid);
+    // }
 
   }
 
   onFocusApplePassword() {
-
     this.renderer.addClass(this.inputApplePasswordRef.nativeElement, 'isPasswordActive');
   }
 
