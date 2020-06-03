@@ -8,12 +8,14 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {GenericFormModule} from './generic-form/generic-form.module';
 import {MaterialModule} from './shared/material.module';
 import {MatButtonModule} from '@angular/material/button';
+import { FormStyleDirective } from './directive/form-style.directive';
 
 @NgModule({
-  declarations: [
-    AppComponent,
+    declarations: [
+        AppComponent,
+        FormStyleDirective,
 
-  ],
+    ],
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -23,7 +25,10 @@ import {MatButtonModule} from '@angular/material/button';
         ReactiveFormsModule,
         MatButtonModule
     ],
-  providers: [],
-  bootstrap: [AppComponent]
+    providers: [],
+    exports: [
+        FormStyleDirective
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

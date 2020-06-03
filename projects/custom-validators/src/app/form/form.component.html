@@ -1,0 +1,56 @@
+<form [formGroup]="form" ylFormStyle>
+  <div class="sign_up_form">
+    <mat-form-field>
+      <input matInput
+             [placeholder]="'Username'"
+             formControlName="username"
+      >
+    </mat-form-field>
+
+    <mat-error *ngIf="(username.touched || username.dirty) && username.errors?.required">This field is required
+    </mat-error>
+    <mat-error *ngIf="username.errors?.cannotContainSpace">Please enter valid a username</mat-error>
+    <mat-form-field>
+      <input matInput
+             [placeholder]="'Password'"
+             formControlName="password"
+             (input)="onInputPassword(password.value)"
+      >
+    </mat-form-field>
+    <yl-password-meter *ngIf="password?.value.length > 0"></yl-password-meter>
+
+    <mat-error *ngIf="(password.touched || password.dirty) && password.errors?.required ">This field is required
+    </mat-error>
+    <mat-error  *ngIf="(password.touched || password.dirty) && password?.invalid && !password.errors?.required;else valid">
+      <i class="fa fa-times-circle"></i>Password format invalid
+    </mat-error>
+    <ng-template #valid>
+      <span [style.marginTop]="'-15px'" [style.color]="'#00897b'" *ngIf="!password.errors?.required"><i class="fa fa-check-circle"   [style.marginRight]="'1rem'"></i>Password format valid</span>
+    </ng-template>
+
+
+
+    <mat-form-field>
+      <input matInput
+             [placeholder]="'Confirm Password'"
+             formControlName="confirmPassword"
+      >
+    </mat-form-field>
+
+    <mat-error *ngIf="(confirmPassword.touched || confirmPassword.dirty) && confirmPassword.errors?.required">This field
+      is required
+    </mat-error>
+    <mat-error
+      *ngIf="(confirmPassword.touched || confirmPassword.dirty) && confirmPassword?.invalid && !confirmPassword.errors?.required;else match">
+      <i class="fa fa-times-circle"></i> Passwords not matched
+    </mat-error>
+
+    <ng-template #match>
+      <span [style.marginTop]="'-15px'" [style.color]="'#00897b'" *ngIf="!confirmPassword.errors?.required"><i class="fa fa-check-circle"   [style.marginRight]="'1rem'"></i>Password matched</span>
+    </ng-template>
+
+
+    <button mat-raised-button color="primary" [disabled]="form.invalid">Submit</button>
+  </div>
+</form>
+

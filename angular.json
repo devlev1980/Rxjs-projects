@@ -1214,6 +1214,128 @@
           }
         }
       }
+    },
+    "custom-validators": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/custom-validators",
+      "sourceRoot": "projects/custom-validators/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/custom-validators",
+            "index": "projects/custom-validators/src/index.html",
+            "main": "projects/custom-validators/src/main.ts",
+            "polyfills": "projects/custom-validators/src/polyfills.ts",
+            "tsConfig": "projects/custom-validators/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/custom-validators/src/favicon.ico",
+              "projects/custom-validators/src/assets"
+            ],
+            "styles": [
+              "node_modules/font-awesome/css/font-awesome.css",
+              "projects/custom-validators/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/custom-validators/src/environments/environment.ts",
+                  "with": "projects/custom-validators/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "custom-validators:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "custom-validators:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "custom-validators:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/custom-validators/src/test.ts",
+            "polyfills": "projects/custom-validators/src/polyfills.ts",
+            "tsConfig": "projects/custom-validators/tsconfig.spec.json",
+            "karmaConfig": "projects/custom-validators/karma.conf.js",
+            "assets": [
+              "projects/custom-validators/src/favicon.ico",
+              "projects/custom-validators/src/assets"
+            ],
+            "styles": [
+              "projects/custom-validators/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/custom-validators/tsconfig.app.json",
+              "projects/custom-validators/tsconfig.spec.json",
+              "projects/custom-validators/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/custom-validators/e2e/protractor.conf.js",
+            "devServerTarget": "custom-validators:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "custom-validators:serve:production"
+            }
+          }
+        }
+      }
     }
   },
   "defaultProject": "password-strength"
