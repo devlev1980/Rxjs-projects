@@ -1,9 +1,11 @@
-import {AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {Observable, Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-breath',
   templateUrl: './breath.component.html',
-  styleUrls: ['./breath.component.scss']
+  styleUrls: ['./breath.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BreathComponent implements OnInit, AfterViewInit {
   @ViewChild('containerRef') containerRef: ElementRef;
@@ -13,6 +15,7 @@ export class BreathComponent implements OnInit, AfterViewInit {
   breathTime: number;
   holdTime: number;
 
+
   constructor(private renderer: Renderer2) {
     this.totalTime = 7500;
     this.breathTime = (this.totalTime / 5) * 2;
@@ -20,46 +23,48 @@ export class BreathComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-
   }
 
   ngAfterViewInit(): void {
-    this.renderer.setStyle(this.pointerRef.nativeElement, 'transition', 'all 0.3s ease-in');
-    this.renderer.setStyle(this.textRef.nativeElement, 'color', '#255957');
-    this.renderer.setStyle(this.textRef.nativeElement, 'transition', 'all 500ms ease-in-out');
-
+    this.renderer.setStyle(this.pointerRef.nativeElement, 'transition', '200ms all ease-in-out');
     this.breathAnimation(this.textRef.nativeElement, this.containerRef.nativeElement);
+    this.initApp();
 
+
+  }
+
+  initApp() {
+    setInterval(() => {
+      this.breathAnimation(this.textRef.nativeElement, this.containerRef.nativeElement);
+    }, this.totalTime);
   }
 
   breathAnimation(textRef, containerRef) {
-    textRef.textContent = 'Breath in!';
     this.renderer.addClass(containerRef, 'grow');
+    this.renderer.removeClass(containerRef, 'shrink');
+    this.renderer.setStyle(this.pointerRef.nativeElement, 'background', '#255957');
+    this.renderer.setStyle(textRef, 'color', '#255957');
+    textRef.textContent = 'Breath in!';
 
     setTimeout(() => {
-      textRef.textContent = 'Hold';
+      textRef.innerHTML = 'Hold';
       this.renderer.setStyle(this.pointerRef.nativeElement, 'background', '#fff');
       this.renderer.setStyle(textRef, 'color', '#fff');
-      setTimeout(() => {
-        textRef.textContent = 'Breath out';
-        this.renderer.removeClass(containerRef, 'grow');
-        this.renderer.addClass(containerRef, 'shrink');
-        this.renderer.setStyle(this.pointerRef.nativeElement, 'background', '#FEDC97');
-        this.renderer.setStyle(textRef, 'color', '#FEDC97');
-      }, this.holdTime / 2);
+      this.onHold(textRef, containerRef);
     }, this.breathTime);
 
-    setInterval(() => {
-      this.renderer.setStyle(this.pointerRef.nativeElement, 'background', '#255957');
-      this.renderer.setStyle(textRef, 'color', '#255957');
-      this.ngAfterViewInit();
-    }, this.totalTime);
 
   }
 
-  loadMore(textRef, containerRef) {
-
-
+  onHold(textRef, containerRef) {
+    setTimeout(() => {
+      textRef.innerHTML = 'Breath out';
+      this.renderer.addClass(containerRef, 'shrink');
+      this.renderer.removeClass(containerRef, 'grow');
+      this.renderer.setStyle(this.pointerRef.nativeElement, 'background', '#FEDC97');
+      this.renderer.setStyle(textRef, 'color', '#FEDC97');
+      this.renderer.setStyle(this.pointerRef.nativeElement, 'transition', '200ms all ease-in-out');
+    }, this.holdTime / 2);
   }
 
 

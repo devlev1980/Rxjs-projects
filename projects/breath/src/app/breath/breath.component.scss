@@ -12,9 +12,15 @@
   transform: scale(1);
   z-index: 1;
   box-shadow: 0 0 20px 12px rgba(0, 0, 0, 0.8);
+  &.grow{
+    animation: grow 3s forwards linear ;
+  }
+  &.shrink{
+    animation: shrink 3s forwards linear ;
+  }
 
   p{
-    text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+    //text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
   }
   .circle{
     background: #d37854;
@@ -74,5 +80,20 @@
   to{
     transform: rotate(360deg);
   }
+}
+@keyframes grow {
+  from{
+    transform: scale(1);
+  }to{
+  transform: scale(1.1);
+     }
+}
+
+@keyframes shrink {
+  from{
+    transform: scale(1.1);
+  }to{
+     transform: scale(1);
+   }
 }
 
