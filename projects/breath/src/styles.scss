@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+body{
+  margin: 0;
+  bottom: 0;
+  box-sizing: border-box;  width: 100%;
+  min-height: 100vh;
+  background-image: url(projects/breath/src/assets/img/bgImg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1336,6 +1336,127 @@
           }
         }
       }
+    },
+    "breath": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/breath",
+      "sourceRoot": "projects/breath/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/breath",
+            "index": "projects/breath/src/index.html",
+            "main": "projects/breath/src/main.ts",
+            "polyfills": "projects/breath/src/polyfills.ts",
+            "tsConfig": "projects/breath/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/breath/src/favicon.ico",
+              "projects/breath/src/assets"
+            ],
+            "styles": [
+              "projects/breath/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/breath/src/environments/environment.ts",
+                  "with": "projects/breath/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "breath:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "breath:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "breath:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/breath/src/test.ts",
+            "polyfills": "projects/breath/src/polyfills.ts",
+            "tsConfig": "projects/breath/tsconfig.spec.json",
+            "karmaConfig": "projects/breath/karma.conf.js",
+            "assets": [
+              "projects/breath/src/favicon.ico",
+              "projects/breath/src/assets"
+            ],
+            "styles": [
+              "projects/breath/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/breath/tsconfig.app.json",
+              "projects/breath/tsconfig.spec.json",
+              "projects/breath/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/breath/e2e/protractor.conf.js",
+            "devServerTarget": "breath:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "breath:serve:production"
+            }
+          }
+        }
+      }
     }
   },
   "defaultProject": "password-strength"

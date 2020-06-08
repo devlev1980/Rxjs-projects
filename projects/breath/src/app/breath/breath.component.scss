@@ -1,0 +1,78 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  margin: auto;
+  position: relative;
+  font-size: 30px;
+  color: #ffffff;
+  transform: scale(1);
+  z-index: 1;
+  box-shadow: 0 0 20px 12px rgba(0, 0, 0, 0.8);
+
+  p{
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+  }
+  .circle{
+    background: #d37854;
+    position: absolute;
+    z-index: -1;
+    width: 96%;
+    display: block;
+    height: 96%;
+    border-radius: 50%;
+  }
+  .gradient-circle {
+    background: conic-gradient(
+        #255957 0%,
+        #1b3f3e 40%,
+        #fff 40%,
+        #fff 65%,
+        #FEDC97 65%,
+        #FEDC97 100%,
+    );
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: 320px;
+    height: 320px;
+    display: block;
+    border-radius: 50%;
+    z-index: -2;
+  }
+  .pointer-container{
+    position: absolute;
+    width: 20px;
+    height: 190px;
+    top: -40px;
+    transform-origin: bottom;
+    animation: rotateCircle 7500ms forwards linear infinite;
+
+    .pointer{
+      width: 20px;
+      height: 20px;
+      top: 0;
+      background: #255957;
+      border-radius: 50%;
+      display: block;
+      //background: red;
+      //background: red;
+      box-shadow: 0 0 5px rgba(0,0,0,0.7);
+
+
+    }
+  }
+
+}
+@keyframes rotateCircle {
+  from{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  }
+}
+

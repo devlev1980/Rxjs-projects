@@ -5,14 +5,17 @@ import { AppComponent } from './app.component';
 import { BorderDirective } from './border.directive';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    BorderDirective
-  ],
-  imports: [
-    BrowserModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        BorderDirective
+    ],
+    imports: [
+        BrowserModule
+    ],
+    providers: [],
+    exports: [
+        BorderDirective
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
